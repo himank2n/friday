@@ -270,7 +270,7 @@ Design questions you must answer, and there are no free answers:
 
 The cheapest token is the one that never enters the window. Instead of holding a
 20,000-token analysis in context, have the agent write it to
-`.miniclaw/notes/analysis.md` and keep a one-line pointer. The information is still
+`.friday/notes/analysis.md` and keep a one-line pointer. The information is still
 available — via `read` — but it costs nothing until needed.
 
 This generalises: **the filesystem is your extended context.** Notes, plans, todo lists,

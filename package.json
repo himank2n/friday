@@ -1,0 +1,30 @@
+{
+  "name": "friday",
+  "version": "1.0.0",
+  "description": "A staged curriculum for understanding AI agents from first principles, by building one.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himank2n/friday.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/himank2n/friday/issues"
+  },
+  "homepage": "https://github.com/himank2n/friday#readme",
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "typescript": "^7.0.2"
+  }
+}

@@ -139,11 +139,67 @@ because nothing didn't work, because you never made a decision.
 
 ---
 
-## 4. What to put on a resume, and what to claim
+## 4. Which language
+
+Either TypeScript or Python works. Everything in stages 1-9 is language-independent — the
+loop, the invariants, cache placement, compaction, evals. Every SDK is generated from the
+same OpenAPI spec, so it is the same JSON on the wire either way. Concepts transfer at
+100%, syntax in a day. **Don't spend more than ten minutes on this decision.**
+
+First, the honest version of "isn't everything Python?" — it depends which population you
+count:
+
+| Python dominates | TypeScript dominates |
+|---|---|
+| ML/AI research, anything model-adjacent | Coding agents and dev tooling |
+| RAG and data pipelines | Anything shipping in an editor, CLI, or browser |
+| Frameworks and tutorials (LangChain, LlamaIndex, CrewAI, AutoGen, DSPy, Pydantic AI) | Claude Code, Claude Agent SDK, Cursor, Cline, Continue, Vercel AI SDK, Mastra |
+| Enterprise AI-platform teams grown out of data science | Product companies whose app layer is already JS |
+
+Count every agent in existence and Python has a plurality, largely on the strength of
+tutorials and the ML ecosystem. Count *coding* agents and it flips to TypeScript. "Most
+agents are Python" is technically true and misleading for this particular project.
+
+**Decide from your target roles, not from the general trend.** Read five real job
+descriptions for roles you'd actually take and count which language appears in the
+requirements. That's better evidence than any argument here.
+
+- **Choose TypeScript if** it's your strongest language and you're aiming at dev tools or
+  AI product engineering. Two concrete advantages: zero language friction means your whole
+  cognitive budget goes to the concepts (which matters most in stage 4), and the reference
+  implementations you'll read for comparison at stage 9 are TS.
+- **Choose Python if** you're aiming at ML-adjacent teams — research-adjacent, ML infra,
+  data platform — where the language is part of the signal, or if you want the eval and
+  observability tooling ecosystem, which skews Python-first.
+
+### If you go Python
+
+Substitutions from what the stage docs assume:
+
+| Stage doc says | Python equivalent |
+|---|---|
+| `@anthropic-ai/sdk` | `anthropic` |
+| `zod` | `pydantic` |
+| `client.messages.stream()` + `finalMessage()` | `client.messages.stream()` + `get_final_message()` |
+| Structured output via `zodOutputFormat` | `client.messages.parse(output_format=Model)` |
+| Tool Runner (`betaZodTool` + `toolRunner`) | `@beta_tool` decorator + `client.beta.messages.tool_runner` |
+
+Two genuine differences, not just naming:
+
+- **The Python SDK refuses non-streaming requests with large `max_tokens`** and raises
+  rather than letting you hit a timeout. So stage 3's streaming milestone effectively
+  arrives during stage 1. That's fine — arguably better — just know why it happened.
+- **Pin to Python 3.12 or 3.13, not 3.14.** 3.14 is new enough that SDK and tooling
+  support lags, and debugging a dependency resolution problem is not what you're here to
+  learn. Check that `anthropic` installs cleanly before you commit to a version.
+
+---
+
+## 5. What to put on a resume, and what to claim
 
 Once you've done stages 1-4 and 8, the honest and strong framing is something like:
 
-> Built a coding agent from scratch (TypeScript, Anthropic API): tool-use loop with
+> Built a coding agent from scratch (TypeScript or Python, Anthropic API): tool-use loop with
 > parallel execution, permission gating, filesystem sandboxing, prompt-cache
 > optimisation (measured hit rate X%, cost reduction Y%), context compaction to run
 > past the window limit, and an eval harness over N tasks.
@@ -158,7 +214,7 @@ Those are the two things most candidates don't have.
 
 ---
 
-## 5. Sequencing against the rest of your prep
+## 6. Sequencing against the rest of your prep
 
 Given a Sept 7 leave-end date and DS&A plus system design also competing for time:
 

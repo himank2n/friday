@@ -7,7 +7,7 @@ modes to trigger deliberately, and the checkpoints that prove you understood eac
 There are no solution files. If you get stuck, the fix is usually in the "Failure modes"
 section of the stage you're on.
 
-Working title for the thing you'll build: **miniclaw**.
+Working title for the thing you'll build: **friday**.
 
 ---
 
@@ -112,7 +112,7 @@ Nothing here is prescriptive — it's the shape most people converge on, so you 
 target to aim at rather than a blank page:
 
 ```
-miniclaw/
+friday/
   src/
     minimal.ts          stage 1: the whole agent in one file. Keep it forever, unchanged.
     loop.ts             stage 3+: the real loop, streaming, cancellation

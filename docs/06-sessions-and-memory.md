@@ -86,7 +86,7 @@ Memory is the "offload" move from stage 4 applied across sessions. Three ways to
 in increasing order of machinery:
 
 **1. A file the agent reads and writes.** Simplest and surprisingly effective. A
-`MEMORY.md` or a `.miniclaw/memory/` directory. You mention it in the system prompt; the
+`MEMORY.md` or a `.friday/memory/` directory. You mention it in the system prompt; the
 agent uses `read`/`write`/`edit`, which it already has. No new mechanism at all. Start
 here.
 
@@ -128,7 +128,7 @@ is a common interview question with a lot of hand-waving in most answers.
 ## 6.3 Build it
 
 1. `session/log.ts` — append-only JSONL writer, flushed per event. A session id and a
-   directory (`.miniclaw/sessions/<id>.jsonl`).
+   directory (`.friday/sessions/<id>.jsonl`).
 2. Emit every event type above from the places they occur.
 3. `project(events) -> messages` as a pure function, including orphan-tool_use repair.
 4. `--resume <id>` and `--resume-last`.
